@@ -28,7 +28,7 @@ spec:
         targetRevision: main
       destination:
         name: '{{.values.clusterName}}'
-        namespace: guestbook
+        namespace: guestbook-app-of-apps
       syncPolicy:
         syncOptions:
           - ServerSideApply=true
