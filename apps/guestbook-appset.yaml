@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: guestbook
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - clusters:
+        values:
+          clusterName: '{{.name}}'
+          clusterShortName: '{{index .metadata.labels "cluster-short-name"}}'
+        selector:
+          matchExpressions:
+            - key: akuity.io/argo-cd-cluster-name
+              operator: NotIn
+              values: [in-cluster]
+  template:
+    metadata:
+      name: 'guestbook-{{.values.clusterShortName}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/argoproj/argocd-example-apps.git
+        path: guestbook
+        directory:
+          recurse: true
+        targetRevision: main
+      destination:
+        name: '{{.values.clusterName}}'
+        namespace: guestbook
+      syncPolicy:
+        syncOptions:
+          - ServerSideApply=true
+          - CreateNamespace=true
+        automated:
+          selfHeal: true
+          allowEmpty: true
