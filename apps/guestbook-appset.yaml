@@ -9,7 +9,7 @@ spec:
     - clusters:
         values:
           clusterName: '{{.name}}'
-          clusterShortName: '{{index .metadata.labels "cluster-short-name"}}'
+          clusterShortName: '{{index .metadata.labels "short-name"}}'
         selector:
           matchLabels:
             cluster-short-name: cluster-short-name
