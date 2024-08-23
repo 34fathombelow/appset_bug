@@ -17,7 +17,7 @@ spec:
              values: [in-cluster]
            - key: cluster-short-name
              operator: in
-             values: short-name       
+             values: [short-name]       
            
   template:
     metadata:
