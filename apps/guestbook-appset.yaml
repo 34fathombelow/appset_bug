@@ -23,7 +23,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/argoproj/argocd-example-apps.git
+        repoURL: https://github.com/34fathombelow/gb
         path: guestbook
         directory:
           recurse: true
