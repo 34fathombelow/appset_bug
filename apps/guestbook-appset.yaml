@@ -16,7 +16,7 @@ spec:
              operator: NotIn
              values: [in-cluster]
            - key: cluster-short-name
-             operator: in
+             operator: In
              values: [short-name]       
            
   template:
