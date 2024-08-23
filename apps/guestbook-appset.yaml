@@ -11,8 +11,14 @@ spec:
           clusterName: '{{.name}}'
           clusterShortName: '{{index .metadata.labels "cluster-short-name"}}'
         selector:
-          matchLabels:
-            cluster-short-name: short-name
+         matchExpressions:
+           - key: akuity.io/argo-cd-cluster-name
+             operator: NotIn
+             values: [in-cluster]
+           - key: cluster-short-name
+             operator: in
+             values: short-name       
+           
   template:
     metadata:
       name: 'guestbook-{{.values.clusterShortName}}'
