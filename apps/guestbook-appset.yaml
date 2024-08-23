@@ -23,7 +23,7 @@ spec:
         path: guestbook
         directory:
           recurse: true
-        targetRevision: main
+        targetRevision: HEAD
       destination:
         name: '{{.values.clusterName}}'
         namespace: guestbook-app-of-apps
