@@ -26,7 +26,7 @@ spec:
       project: default
       source:
         repoURL: https://github.com/argoproj/argocd-example-apps.git
-        path: guestbook-helm
+        path: helm-guestbook
         directory:
           recurse: true
         targetRevision: '{{.values.addonChartVersion}}'
