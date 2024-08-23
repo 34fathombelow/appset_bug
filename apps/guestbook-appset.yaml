@@ -8,8 +8,8 @@ spec:
   generators:
     - clusters:
         values:
+          clusterName: '{{.name}}'
           clusterShortName: '{{index .metadata.labels "cluster-short-name"}}'
-          addonChartVersion: HEAD
         selector:
          matchExpressions:
            - key: akuity.io/argo-cd-cluster-name
