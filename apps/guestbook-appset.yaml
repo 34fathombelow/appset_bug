@@ -16,7 +16,7 @@ spec:
              operator: NotIn
              values: [in-cluster]
            - key: cluster-short-name
-             operator: Exist
+             operator: Exists
   template:
     metadata:
       name: 'guestbook-{{.values.clusterShortName}}'
