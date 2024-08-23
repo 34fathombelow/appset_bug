@@ -10,6 +10,7 @@ spec:
         values:
           clusterName: '{{.name}}'
           clusterShortName: '{{index .metadata.labels "cluster-short-name"}}'
+          addonChartVersion: HEAD
         selector:
          matchExpressions:
            - key: akuity.io/argo-cd-cluster-name
@@ -17,8 +18,7 @@ spec:
              values: [in-cluster]
            - key: cluster-short-name
              operator: In
-             values: [short-name]       
-           
+             values: [short-name]
   template:
     metadata:
       name: 'guestbook-{{.values.clusterShortName}}'
@@ -26,10 +26,10 @@ spec:
       project: default
       source:
         repoURL: https://github.com/argoproj/argocd-example-apps.git
-        path: guestbook
+        path: guestbook-helm
         directory:
           recurse: true
-        targetRevision: HEAD
+        targetRevision: '{{.values.addonChartVersion}}'
       destination:
         name: '{{.values.clusterName}}'
         namespace: guestbook-app-of-apps
